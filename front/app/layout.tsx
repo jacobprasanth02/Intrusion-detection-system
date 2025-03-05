@@ -1,26 +1,20 @@
 import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { ThemeProvider } from "./theme-provider"
 import "./globals.css"
-import { Toaster } from "sonner"
-
-const inter = Inter({ subsets: ["latin"] })
-
-export const metadata: Metadata = {
-  title: "DDoS Detection Dashboard",
-  description: "Real-time network traffic monitoring and DDoS attack prevention",
-}
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        {children}
-        <Toaster position="top-right" />
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <title>Instrusion Detection System</title>
+        <meta name="description" content="Real-time network traffic monitoring and attack prevention" />
+      </head>
+      <body className="min-h-screen bg-background">
+        <ThemeProvider defaultTheme="light">{children}</ThemeProvider>
       </body>
     </html>
   )
