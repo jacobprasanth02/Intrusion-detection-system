@@ -3,12 +3,26 @@ from scapy.all import sniff
 from collections import defaultdict
 import time
 import os
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-IP_THRESHOLD = 1000  # Maximum packets allowed per TIME_WINDOW
-BLOCK_TIME = 120      # Time (in seconds) to block an IP
-TIME_WINDOW = 60      # Time (in seconds) for counting packets
+origins = [
+    "http://localhost:3000",  
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  
+    allow_credentials=True,  
+    allow_methods=["*"],  
+    allow_headers=["*"], 
+)
+
+IP_THRESHOLD = 2000  
+BLOCK_TIME = 120     
+TIME_WINDOW = 30    
 
 packet_counts = defaultdict(int)
 start_time = time.time()

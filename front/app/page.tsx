@@ -291,7 +291,7 @@ export default function Home() {
                 </CardTitle>
                 <CardDescription>Packet count over time</CardDescription>
               </CardHeader>
-              <CardContent className="h-80">
+              <CardContent className="h-80 mt-7">
                 <AreaChart
                   data={trafficHistory}
                   index="time"
